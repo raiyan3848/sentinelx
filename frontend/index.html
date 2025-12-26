@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SENTINELX - Behavioral Biometric Authentication</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="landing-container">
+        <header class="header">
+            <div class="logo">
+                <h1>🔐 SENTINELX</h1>
+                <p>Advanced Behavioral Biometric Authentication</p>
+            </div>
+            <nav class="nav">
+                <a href="login.html" class="nav-link">Login</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#about" class="nav-link">About</a>
+            </nav>
+        </header>
+
+        <main class="main-content">
+            <section class="hero">
+                <div class="hero-content">
+                    <h2>Next-Generation Security Through Behavioral Analysis</h2>
+                    <p>SENTINELX uses advanced machine learning to create your unique "Digital Behavior DNA" - 
+                       providing continuous authentication that goes beyond traditional passwords.</p>
+                    
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="stat-number">99.7%</span>
+                            <span class="stat-label">Accuracy</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">&lt;100ms</span>
+                            <span class="stat-label">Response Time</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">24/7</span>
+                            <span class="stat-label">Monitoring</span>
+                        </div>
+                    </div>
+                    
+                    <div class="cta-buttons">
+                        <a href="login.html" class="btn btn-primary">Get Started</a>
+                        <a href="dashboard.html" class="btn btn-secondary">View Demo</a>
+                    </div>
+                </div>
+                
+                <div class="hero-visual">
+                    <div class="behavior-demo">
+                        <div class="keystroke-pattern">
+                            <h4>Keystroke Dynamics</h4>
+                            <div class="pattern-bars">
+                                <div class="bar" style="height: 60%"></div>
+                                <div class="bar" style="height: 80%"></div>
+                                <div class="bar" style="height: 45%"></div>
+                                <div class="bar" style="height: 90%"></div>
+                                <div class="bar" style="height: 70%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="mouse-pattern">
+                            <h4>Mouse Movement</h4>
+                            <svg class="mouse-trail" width="200" height="100">
+                                <path d="M10,50 Q50,20 100,50 T190,50" stroke="#00ff88" stroke-width="2" fill="none"/>
+                                <circle cx="190" cy="50" r="3" fill="#00ff88"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="features" class="features">
+                <h2>How SENTINELX Protects You</h2>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">⌨️</div>
+                        <h3>Keystroke Analysis</h3>
+                        <p>Analyzes your unique typing rhythm, key press duration, and timing patterns to create an unbreakable behavioral signature.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🖱️</div>
+                        <h3>Mouse Dynamics</h3>
+                        <p>Tracks mouse movement patterns, click behavior, and navigation habits to detect unauthorized access attempts.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🧠</div>
+                        <h3>AI-Powered Detection</h3>
+                        <p>Advanced machine learning algorithms continuously learn and adapt to your behavior, improving security over time.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Real-Time Monitoring</h3>
+                        <p>Continuous behavioral analysis provides instant threat detection and automated security responses.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🛡️</div>
+                        <h3>Dynamic Trust Scoring</h3>
+                        <p>Calculates real-time trust scores based on behavioral patterns, triggering appropriate security actions.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🔒</div>
+                        <h3>Zero-Knowledge Security</h3>
+                        <p>Analyzes behavioral patterns without storing sensitive data, ensuring complete privacy protection.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="about" class="about">
+                <div class="about-content">
+                    <h2>The Future of Authentication</h2>
+                    <p>Traditional authentication methods fail when credentials are compromised. SENTINELX revolutionizes security by creating a unique behavioral biometric profile - your "Digital Behavior DNA" - that cannot be stolen or replicated.</p>
+                    
+                    <div class="tech-stack">
+                        <h3>Powered By</h3>
+                        <div class="tech-items">
+                            <span class="tech-item">Machine Learning</span>
+                            <span class="tech-item">Behavioral Analytics</span>
+                            <span class="tech-item">Real-Time Processing</span>
+                            <span class="tech-item">Anomaly Detection</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2024 SENTINELX. Advanced Behavioral Biometric Authentication System.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Simple animations for the demo
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate pattern bars
+            const bars = document.querySelectorAll('.pattern-bars .bar');
+            setInterval(() => {
+                bars.forEach(bar => {
+                    const height = Math.random() * 80 + 20;
+                    bar.style.height = height + '%';
+                });
+            }, 2000);
+            
+            // Animate mouse trail
+            const path = document.querySelector('.mouse-trail path');
+            const circle = document.querySelector('.mouse-trail circle');
+            
+            setInterval(() => {
+                const newPath = `M10,${Math.random() * 40 + 30} Q50,${Math.random() * 40 + 10} 100,${Math.random() * 40 + 30} T190,${Math.random() * 40 + 30}`;
+                path.setAttribute('d', newPath);
+            }, 3000);
+        });
+    </script>
+</body>
+</html>

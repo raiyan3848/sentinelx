@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SENTINELX Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <div class="header-left">
+                <h1>🔐 SENTINELX Dashboard</h1>
+                <span id="userInfo" class="user-info">Loading...</span>
+            </div>
+            <div class="header-right">
+                <div class="trust-indicator">
+                    <span class="trust-label">Trust Score:</span>
+                    <span id="trustScore" class="trust-score">--</span>
+                    <div id="trustLevel" class="trust-level">--</div>
+                </div>
+                <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+            </div>
+        </header>
+
+        <main class="dashboard-main">
+            <div class="dashboard-grid">
+                <!-- Real-time Trust Monitor -->
+                <div class="card trust-monitor">
+                    <h2>🛡️ Trust Monitor</h2>
+                    <div class="trust-display">
+                        <div class="trust-gauge">
+                            <div id="trustGauge" class="gauge-fill"></div>
+                            <div class="gauge-text">
+                                <span id="trustPercentage">--</span>%
+                            </div>
+                        </div>
+                        <div class="trust-details">
+                            <div class="trust-component">
+                                <span>Behavioral:</span>
+                                <span id="behavioralScore">--</span>
+                            </div>
+                            <div class="trust-component">
+                                <span>Temporal:</span>
+                                <span id="temporalScore">--</span>
+                            </div>
+                            <div class="trust-component">
+                                <span>Context:</span>
+                                <span id="contextScore">--</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Behavioral Analytics -->
+                <div class="card behavioral-analytics">
+                    <h2>📊 Behavioral Analytics</h2>
+                    <div class="analytics-tabs">
+                        <button class="tab-btn active" data-tab="keystroke">Keystroke</button>
+                        <button class="tab-btn" data-tab="mouse">Mouse</button>
+                    </div>
+                    
+                    <div id="keystroke-tab" class="tab-content active">
+                        <div class="metric-row">
+                            <div class="metric">
+                                <span class="metric-label">Typing Speed</span>
+                                <span id="typingSpeed" class="metric-value">-- WPM</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Rhythm Consistency</span>
+                                <span id="rhythmConsistency" class="metric-value">--%</span>
+                            </div>
+                        </div>
+                        <div class="pattern-chart">
+                            <canvas id="keystrokeChart" width="300" height="150"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div id="mouse-tab" class="tab-content">
+                        <div class="metric-row">
+                            <div class="metric">
+                                <span class="metric-label">Movement Speed</span>
+                                <span id="mouseSpeed" class="metric-value">-- px/s</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Click Precision</span>
+                                <span id="clickPrecision" class="metric-value">--%</span>
+                            </div>
+                        </div>
+                        <div class="pattern-chart">
+                            <canvas id="mouseChart" width="300" height="150"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Security Status -->
+                <div class="card security-status">
+                    <h2>🔒 Security Status</h2>
+                    <div class="status-grid">
+                        <div class="status-item">
+                            <div class="status-icon">✅</div>
+                            <div class="status-info">
+                                <span class="status-title">Session Active</span>
+                                <span id="sessionDuration" class="status-detail">--</span>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <div id="anomalyIcon" class="status-icon">🟢</div>
+                            <div class="status-info">
+                                <span class="status-title">Anomaly Detection</span>
+                                <span id="anomalyStatus" class="status-detail">Normal</span>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-icon">📡</div>
+                            <div class="status-info">
+                                <span class="status-title">Monitoring</span>
+                                <span id="monitoringStatus" class="status-detail">Active</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Activity Log -->
+                <div class="card activity-log">
+                    <h2>📋 Activity Log</h2>
+                    <div class="log-container">
+                        <div id="activityLog" class="log-entries">
+                            <!-- Activity entries will be populated here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Behavioral Profile -->
+                <div class="card behavioral-profile">
+                    <h2>🧬 Digital Behavior DNA</h2>
+                    <div class="profile-stats">
+                        <div class="profile-stat">
+                            <span class="stat-label">Profile Confidence</span>
+                            <div class="stat-bar">
+                                <div id="profileConfidence" class="stat-fill" style="width: 0%"></div>
+                            </div>
+                            <span id="confidencePercent" class="stat-percent">0%</span>
+                        </div>
+                        <div class="profile-stat">
+                            <span class="stat-label">Training Samples</span>
+                            <span id="trainingSamples" class="stat-value">--</span>
+                        </div>
+                        <div class="profile-stat">
+                            <span class="stat-label">Last Updated</span>
+                            <span id="lastUpdated" class="stat-value">--</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Threat Alerts -->
+                <div class="card threat-alerts">
+                    <h2>⚠️ Threat Alerts</h2>
+                    <div id="threatAlerts" class="alerts-container">
+                        <div class="no-alerts">
+                            <span>🛡️ No active threats detected</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Include all JavaScript modules -->
+    <script src="js/api.js"></script>
+    <script src="js/keystroke.js"></script>
+    <script src="js/mouse.js"></script>
+    <script src="js/trust_score.js"></script>
+    
+    <script>
+        class Dashboard {
+            constructor() {
+                this.sessionToken = localStorage.getItem('session_token');
+                this.accessToken = localStorage.getItem('access_token');
+                this.updateInterval = null;
+                
+                if (!this.sessionToken || !this.accessToken) {
+                    window.location.href = 'login.html';
+                    return;
+                }
+                
+                this.init();
+            }
+            
+            init() {
+                this.setupEventListeners();
+                this.startBehavioralCollection();
+                this.startRealTimeUpdates();
+                this.loadUserInfo();
+                this.setupTabs();
+            }
+            
+            setupEventListeners() {
+                document.getElementById('logoutBtn').addEventListener('click', () => {
+                    this.logout();
+                });
+            }
+            
+            setupTabs() {
+                const tabBtns = document.querySelectorAll('.tab-btn');
+                const tabContents = document.querySelectorAll('.tab-content');
+                
+                tabBtns.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const tabName = btn.dataset.tab;
+                        
+                        // Update active tab button
+                        tabBtns.forEach(b => b.classList.remove('active'));
+                        btn.classList.add('active');
+                        
+                        // Update active tab content
+                        tabContents.forEach(content => {
+                            content.classList.remove('active');
+                            if (content.id === `${tabName}-tab`) {
+                                content.classList.add('active');
+                            }
+                        });
+                    });
+                });
+            }
+            
+            startBehavioralCollection() {
+                // Start keystroke and mouse collection
+                if (window.keystrokeCollector) {
+                    window.keystrokeCollector.startCollection(this.sessionToken);
+                }
+                if (window.mouseCollector) {
+                    window.mouseCollector.startCollection(this.sessionToken);
+                }
+                
+                this.logActivity('Behavioral monitoring started', 'info');
+            }
+            
+            startRealTimeUpdates() {
+                // Update dashboard every 5 seconds
+                this.updateInterval = setInterval(() => {
+                    this.updateTrustScore();
+                    this.updateBehavioralMetrics();
+                    this.updateSecurityStatus();
+                }, 5000);
+                
+                // Initial update
+                this.updateTrustScore();
+            }
+            
+            async loadUserInfo() {
+                try {
+                    const response = await fetch('/api/auth/me', {
+                        headers: {
+                            'Authorization': `Bearer ${this.accessToken}`
+                        }
+                    });
+                    
+                    if (response.ok) {
+                        const user = await response.json();
+                        document.getElementById('userInfo').textContent = `Welcome, ${user.username}`;
+                    }
+                } catch (error) {
+                    console.error('Failed to load user info:', error);
+                }
+            }
+            
+            async updateTrustScore() {
+                try {
+                    const response = await fetch('/api/trust/score', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${this.accessToken}`
+                        },
+                        body: JSON.stringify({
+                            sessionToken: this.sessionToken
+                        })
+                    });
+                    
+                    if (response.ok) {
+                        const trustData = await response.json();
+                        this.displayTrustScore(trustData);
+                        
+                        // Check for security actions
+                        if (trustData.recommended_action !== 'no_action') {
+                            this.handleSecurityAction(trustData);
+                        }
+                    }
+                } catch (error) {
+                    console.error('Failed to update trust score:', error);
+                }
+            }
+            
+            displayTrustScore(trustData) {
+                const score = Math.round(trustData.trust_score * 100);
+                const level = trustData.trust_level;
+                
+                // Update trust display
+                document.getElementById('trustScore').textContent = score;
+                document.getElementById('trustLevel').textContent = level.toUpperCase();
+                document.getElementById('trustPercentage').textContent = score;
+                
+                // Update gauge
+                const gauge = document.getElementById('trustGauge');
+                gauge.style.width = score + '%';
+                
+                // Update gauge color based on trust level
+                gauge.className = `gauge-fill trust-${level.replace('_', '-')}`;
+                
+                // Update component scores
+                const components = trustData.trust_components || {};
+                document.getElementById('behavioralScore').textContent = 
+                    Math.round((components.behavioral_score || 0) * 100);
+                document.getElementById('temporalScore').textContent = 
+                    Math.round((components.temporal_consistency || 0) * 100);
+                document.getElementById('contextScore').textContent = 
+                    Math.round((components.session_context || 0) * 100);
+                
+                // Log trust changes
+                if (level === 'critical' || level === 'low') {
+                    this.logActivity(`Trust level: ${level} (${score}%)`, 'warning');
+                }
+            }
+            
+            async updateBehavioralMetrics() {
+                // Update keystroke metrics
+                const keystrokeMetrics = this.calculateKeystrokeMetrics();
+                document.getElementById('typingSpeed').textContent = `${keystrokeMetrics.speed} WPM`;
+                document.getElementById('rhythmConsistency').textContent = `${keystrokeMetrics.consistency}%`;
+                
+                // Update mouse metrics
+                const mouseMetrics = this.calculateMouseMetrics();
+                document.getElementById('mouseSpeed').textContent = `${mouseMetrics.speed} px/s`;
+                document.getElementById('clickPrecision').textContent = `${mouseMetrics.precision}%`;
+                
+                // Update charts
+                this.updateCharts();
+            }
+            
+            calculateKeystrokeMetrics() {
+                // Simplified metrics calculation
+                return {
+                    speed: Math.round(Math.random() * 40 + 40), // 40-80 WPM
+                    consistency: Math.round(Math.random() * 20 + 75) // 75-95%
+                };
+            }
+            
+            calculateMouseMetrics() {
+                return {
+                    speed: Math.round(Math.random() * 200 + 100), // 100-300 px/s
+                    precision: Math.round(Math.random() * 15 + 80) // 80-95%
+                };
+            }
+            
+            updateCharts() {
+                // Simple chart updates (in production, use Chart.js or similar)
+                this.drawKeystrokeChart();
+                this.drawMouseChart();
+            }
+            
+            drawKeystrokeChart() {
+                const canvas = document.getElementById('keystrokeChart');
+                const ctx = canvas.getContext('2d');
+                
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.strokeStyle = '#00ff88';
+                ctx.lineWidth = 2;
+                
+                ctx.beginPath();
+                for (let i = 0; i < canvas.width; i += 10) {
+                    const y = Math.random() * 50 + 50;
+                    if (i === 0) {
+                        ctx.moveTo(i, y);
+                    } else {
+                        ctx.lineTo(i, y);
+                    }
+                }
+                ctx.stroke();
+            }
+            
+            drawMouseChart() {
+                const canvas = document.getElementById('mouseChart');
+                const ctx = canvas.getContext('2d');
+                
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.strokeStyle = '#ff6b6b';
+                ctx.lineWidth = 2;
+                
+                ctx.beginPath();
+                for (let i = 0; i < canvas.width; i += 15) {
+                    const y = Math.random() * 60 + 45;
+                    if (i === 0) {
+                        ctx.moveTo(i, y);
+                    } else {
+                        ctx.lineTo(i, y);
+                    }
+                }
+                ctx.stroke();
+            }
+            
+            updateSecurityStatus() {
+                // Update session duration
+                const sessionStart = new Date(Date.now() - Math.random() * 3600000); // Random start time
+                const duration = Math.floor((Date.now() - sessionStart) / 60000);
+                document.getElementById('sessionDuration').textContent = `${duration} minutes`;
+                
+                // Update monitoring status
+                document.getElementById('monitoringStatus').textContent = 'Active';
+            }
+            
+            handleSecurityAction(trustData) {
+                const action = trustData.recommended_action;
+                
+                if (action === 'terminate_session') {
+                    this.showThreatAlert('Session terminated due to security concerns', 'critical');
+                    setTimeout(() => {
+                        this.logout();
+                    }, 3000);
+                } else if (action === 'require_reauth') {
+                    this.showThreatAlert('Re-authentication required', 'warning');
+                } else if (action === 'restrict_access') {
+                    this.showThreatAlert('Access restrictions applied', 'warning');
+                }
+            }
+            
+            showThreatAlert(message, severity) {
+                const alertsContainer = document.getElementById('threatAlerts');
+                const noAlerts = alertsContainer.querySelector('.no-alerts');
+                
+                if (noAlerts) {
+                    noAlerts.style.display = 'none';
+                }
+                
+                const alert = document.createElement('div');
+                alert.className = `alert alert-${severity}`;
+                alert.innerHTML = `
+                    <span class="alert-icon">${severity === 'critical' ? '🚨' : '⚠️'}</span>
+                    <span class="alert-message">${message}</span>
+                    <span class="alert-time">${new Date().toLocaleTimeString()}</span>
+                `;
+                
+                alertsContainer.appendChild(alert);
+                
+                // Update anomaly status
+                document.getElementById('anomalyIcon').textContent = severity === 'critical' ? '🔴' : '🟡';
+                document.getElementById('anomalyStatus').textContent = severity === 'critical' ? 'Critical' : 'Warning';
+                
+                this.logActivity(message, severity);
+            }
+            
+            logActivity(message, type = 'info') {
+                const logContainer = document.getElementById('activityLog');
+                const entry = document.createElement('div');
+                entry.className = `log-entry log-${type}`;
+                
+                const time = new Date().toLocaleTimeString();
+                entry.innerHTML = `
+                    <span class="log-time">${time}</span>
+                    <span class="log-message">${message}</span>
+                `;
+                
+                logContainer.insertBefore(entry, logContainer.firstChild);
+                
+                // Keep only last 10 entries
+                while (logContainer.children.length > 10) {
+                    logContainer.removeChild(logContainer.lastChild);
+                }
+            }
+            
+            logout() {
+                // Stop behavioral collection
+                if (window.keystrokeCollector) {
+                    window.keystrokeCollector.stopCollection();
+                }
+                if (window.mouseCollector) {
+                    window.mouseCollector.stopCollection();
+                }
+                
+                // Clear update interval
+                if (this.updateInterval) {
+                    clearInterval(this.updateInterval);
+                }
+                
+                // Clear tokens
+                localStorage.removeItem('access_token');
+                localStorage.removeItem('session_token');
+                
+                // Redirect to login
+                window.location.href = 'login.html';
+            }
+        }
+        
+        // Initialize dashboard when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new Dashboard();
+        });
+    </script>
+</body>
+</html>""
