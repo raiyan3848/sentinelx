@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🔐 SENTINELX: Behavioral Biometric Authentication System
 
 **Advanced Continuous Authentication Through Digital Behavior DNA**
@@ -316,3 +317,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **SENTINELX** - *Securing the future through behavioral intelligence*
 
 Built with ❤️ for next-generation cybersecurity
+=======
+# sentinelx
+SENTINELX is an advanced behavioral biometric authentication system that creates a unique "Digital Behavior DNA" for each user by analyzing their keystroke dynamics and mouse movement patterns.
+>>>>>>> 79c8b1a457e2f58d28a37a798f39d56c954409b0
